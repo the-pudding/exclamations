@@ -5,7 +5,7 @@
         Requires:           secret.json (see Russell)
         Output:             email_data.csv
 
-    On first use, the script will ask you to open browser window get permission for email id and password. The authorization will then be cached on the local machine for future use. Sometimes the script returns an error when the token expires. Rerun the script and it will work!
+On first use, the script will ask you to open browser window get permission for email id and password. The authorization will then be cached on the local machine for future use. Sometimes the script returns an error when the token expires. Rerun the script and it will work!
 
 ## Exploratory Plots
 
