@@ -12,7 +12,7 @@
         Requires:           secret.json
         Output:             email_data.csv
 
-On first use, the script will ask you to open browser window get permission for email id and password. The authorization will then be cached on the local machine for future use. Sometimes the script returns an error when the token expires. Rerun the script and it will work! If you have multiple address, you can pipe delimit (eg. `"russellgoldenberg|smokey"`).
+On first use, it will take a little bit to install the packages. Then, it will tell you to open a browser window get permission for email id and password. The authorization will then be cached on the local machine for future use. Sometimes the script returns an error when the token expires. Rerun the script and it will work! If you have multiple address, you can pipe delimit (eg. `"russellgoldenberg|smokey"`).
 
 ## Analysis
 
