@@ -14,8 +14,7 @@ packages = c("tidyverse",
              "data.table")
 check_inst_load(packages)
 #################################################################
-#args = commandArgs(trailingOnly=TRUE)
-args = c("arjunkakkar|ak23|arjun.kakkar", 1000)
+args = commandArgs(trailingOnly=TRUE)
 
 ###### Data collection and organization ######
 # Setup authorization
