@@ -10,7 +10,6 @@ packages = c("tidyverse",
              "gmailr",
              "stringr",
              "base64url",
-             "parallel",
              "data.table")
 check_inst_load(packages)
 #################################################################
@@ -106,23 +105,34 @@ m_ids <-
   }) %>% unlist
 
 # Generate the dataset from the ids and save to csv
-output <- mclapply(m_ids, 
+output <- lapply(m_ids, 
          function(id) {
+           base::message(paste0("Getting email with message id: ", id))
            tryCatch(
              create_entry(id),
              error = function(e) {
                return(list(error = as.character(e)))
              }
            )
-         },
-  mc.cores = getOption("mc.cores", 12L)) %>%
+         }) %>%
   bind_rows(., c(error = "test"))
 
+base::message("Printing errors from getting and parsing emails")
 output %>%
   filter(!is.na(error)) %>%
   select(error) %>%
   print()
 
+if (args[3]) {
+  base::message("Writing raw data file...")
+  output %>%
+    filter(is.na(error)) %>%
+    select(-error) %>% 
+    write.csv(file = "email_data_raw.csv", row.names = FALSE)
+  base::message("Success: written email_data_raw.csv")
+}
+
+base::message("Writing anonymized and processed data file...")
 output %>%
   filter(is.na(error)) %>%
   select(-error) %>%
@@ -140,4 +150,4 @@ output %>%
          from = factor(from, labels = length(levels)),
          grouping_id = factor(from, labels = length(grouping_id))) %>% 
   write.csv(file = "email_data.csv", row.names = FALSE)
-
+base::message("Success: written email_data.csv")
