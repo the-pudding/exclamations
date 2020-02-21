@@ -8,7 +8,7 @@
 ## Getting Emails
 
         Usage:              rscript get_emails.R "regexp for matching outgoing email ids" max_emails True/False
-        Sample command:     rscript get_emails.R "russellgoldenberg" 999999
+        Sample command:     rscript get_emails.R "russellgoldenberg" 999999 True
         Requires:           secret.json
         Output:             email_data.csv
 
