@@ -1,8 +1,15 @@
 ############## Package check and installation ###################
+local({
+  r <- getOption("repos")
+  r["CRAN"] <- "http://cran.r-project.org"
+  options(repos = r)
+})
 check_inst_load <- function(pkg) {
   new <- pkg[!(pkg %in% installed.packages()[, "Package"])]
-  if (length(new)) install.packages(new, dependencies = TRUE, 
-                                    repos = "http://cran.us.r-project.org")
+  old <- pkg[(pkg %in% old.packages()[, "Package"])]
+  inst <- union(new, old)
+  if (length(inst))
+    install.packages(inst, dependencies = TRUE)
   sapply(pkg, require, character.only = TRUE)
 }
 packages = c("tidyverse",
